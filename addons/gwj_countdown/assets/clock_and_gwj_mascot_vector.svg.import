@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cosvg7qq0slkv"
-path="res://.godot/imported/app-icon.svg-168aca8472578dafaf133ba704e06c59.ctex"
+uid="uid://bgx8r5rjj01y3"
+path="res://.godot/imported/clock_and_gwj_mascot_vector.svg-632023f85f8566b9337820069ea03da6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://menus/credits/app-icon.svg"
-dest_files=["res://.godot/imported/app-icon.svg-168aca8472578dafaf133ba704e06c59.ctex"]
+source_file="res://addons/gwj_countdown/assets/clock_and_gwj_mascot_vector.svg"
+dest_files=["res://.godot/imported/clock_and_gwj_mascot_vector.svg-632023f85f8566b9337820069ea03da6.ctex"]
 
 [params]
 
