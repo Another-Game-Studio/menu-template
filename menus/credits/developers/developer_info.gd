@@ -1,4 +1,4 @@
-class_name DevelopperInfo
+class_name DeveloperInfo
 extends Resource
 
 @export var developer_name: String = "Game Developer"

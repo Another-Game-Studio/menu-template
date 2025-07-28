@@ -1,6 +1,6 @@
 extends Control
 
-@export var developer_info: DevelopperInfo
+@export var developer_info: DeveloperInfo
 
 @onready var avatar: Sprite2D = %Avatar
 @onready var itch_button: Button = %Itch
