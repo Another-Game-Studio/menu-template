@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="DevelopperInfo" load_steps=3 format=3 uid="uid://w14tdjpt66eq"]
+
+[ext_resource type="Texture2D" uid="uid://r7oo6q8lvp7u" path="res://menus/credits/developers/jack/red_hood_circle.png" id="1_h343e"]
+[ext_resource type="Script" uid="uid://cgww0ynhn57y7" path="res://menus/credits/developers/developer_info.gd" id="2_m7g03"]
+
+[resource]
+script = ExtResource("2_m7g03")
+developer_name = "Jack Kaller"
+developer_function = "Programming"
+itch_url = "https://jack-kaller.itch.io/"
+github_url = "https://github.com/Jack-Kaller"
+avatar_texture = ExtResource("1_h343e")
+metadata/_custom_type_script = "uid://cgww0ynhn57y7"

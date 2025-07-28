@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://ceyicwixwnwdb"]
+
+[ext_resource type="Theme" uid="uid://bdssu6ufbrowi" path="res://assets/themes/menu_theme.tres" id="1_ehqug"]
+[ext_resource type="Texture2D" uid="uid://cipxq8cnmr2ne" path="res://icon.svg" id="2_nwg8r"]
+[ext_resource type="Script" uid="uid://ch7cijms3hydg" path="res://menus/credits/developers/game_developer_info.gd" id="2_uhjol"]
+[ext_resource type="Resource" uid="uid://w14tdjpt66eq" path="res://menus/credits/developers/jack/jack_kaller_info.tres" id="3_6jioy"]
+[ext_resource type="Texture2D" uid="uid://cosvg7qq0slkv" path="res://menus/credits/app-icon.svg" id="3_nwg8r"]
+[ext_resource type="Texture2D" uid="uid://i5r1t4g4a4yd" path="res://menus/credits/github-mark-white.svg" id="4_7xxet"]
+
+[node name="GameDeveloperInfo" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ehqug")
+script = ExtResource("2_uhjol")
+developer_info = ExtResource("3_6jioy")
+
+[node name="Avatar" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture = ExtResource("2_nwg8r")
+
+[node name="InfoContainer" type="VBoxContainer" parent="."]
+offset_left = -232.0
+offset_top = 112.0
+offset_right = 232.0
+offset_bottom = 214.0
+
+[node name="Name" type="Label" parent="InfoContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Test"
+horizontal_alignment = 1
+
+[node name="Function" type="Label" parent="InfoContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Function"
+horizontal_alignment = 1
+
+[node name="Itch" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = -112.0
+offset_top = 256.0
+offset_right = 220.0
+offset_bottom = 588.0
+scale = Vector2(0.219132, 0.220321)
+icon = ExtResource("3_nwg8r")
+icon_alignment = 1
+
+[node name="Github" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 11.0
+offset_top = 256.0
+offset_right = 117.0
+offset_bottom = 368.0
+scale = Vector2(0.649915, 0.653442)
+icon = ExtResource("4_7xxet")

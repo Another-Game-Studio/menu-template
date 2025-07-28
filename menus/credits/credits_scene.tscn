@@ -1,0 +1,85 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqnqbs5dfuaow"]
+
+[ext_resource type="PackedScene" uid="uid://ceyicwixwnwdb" path="res://menus/credits/developers/GameDeveloperInfo.tscn" id="1_eqyct"]
+[ext_resource type="Theme" uid="uid://bdssu6ufbrowi" path="res://assets/themes/menu_theme.tres" id="1_k48pv"]
+[ext_resource type="Texture2D" uid="uid://cipxq8cnmr2ne" path="res://icon.svg" id="2_bnlhh"]
+
+[node name="CreditsScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_k48pv")
+metadata/_edit_use_anchors_ = true
+
+[node name="LogoContainer" type="Control" parent="Background"]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.132407
+anchor_right = 0.5
+anchor_bottom = 0.132407
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="GameLogo" type="Sprite2D" parent="Background/LogoContainer"]
+texture = ExtResource("2_bnlhh")
+
+[node name="StudioInfoContainer" type="Control" parent="Background"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -240.0
+offset_right = 20.0
+offset_bottom = -200.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MadeByLabel" type="Label" parent="Background/StudioInfoContainer"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -85.5
+offset_top = -49.0
+offset_right = 85.5
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_k48pv")
+text = "made by"
+
+[node name="StudioLogo" type="Sprite2D" parent="Background/StudioInfoContainer"]
+position = Vector2(20, 136)
+texture = ExtResource("2_bnlhh")
+
+[node name="DeveloppersInfo" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 688.0
+offset_top = 352.0
+offset_right = 1188.0
+offset_bottom = 392.0
+theme_override_constants/separation = 500
+
+[node name="GameDeveloperInfo" parent="DeveloppersInfo" instance=ExtResource("1_eqyct")]
+layout_mode = 2
+
+[node name="GameDeveloperInfo2" parent="DeveloppersInfo" instance=ExtResource("1_eqyct")]
+layout_mode = 2
