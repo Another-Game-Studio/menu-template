@@ -23,6 +23,20 @@ grow_vertical = 2
 theme = ExtResource("1_k48pv")
 metadata/_edit_use_anchors_ = true
 
+[node name="DeveloppersInfo" type="HBoxContainer" parent="Background"]
+layout_mode = 0
+offset_left = 672.0
+offset_top = 384.0
+offset_right = 1172.0
+offset_bottom = 424.0
+theme_override_constants/separation = 500
+
+[node name="GameDeveloperInfo" parent="Background/DeveloppersInfo" instance=ExtResource("1_eqyct")]
+layout_mode = 2
+
+[node name="GameDeveloperInfo2" parent="Background/DeveloppersInfo" instance=ExtResource("1_eqyct")]
+layout_mode = 2
+
 [node name="LogoContainer" type="Control" parent="Background"]
 layout_mode = 1
 anchor_left = 0.5
@@ -37,36 +51,6 @@ metadata/_edit_use_anchors_ = true
 
 [node name="GameLogo" type="Sprite2D" parent="Background/LogoContainer"]
 texture = ExtResource("2_bnlhh")
-
-[node name="ScrollContainer" type="ScrollContainer" parent="Background"]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 424.0
-offset_top = -284.0
-offset_right = -368.0
-offset_bottom = 291.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VScrollBar" type="VScrollBar" parent="Background/ScrollContainer"]
-layout_mode = 2
-
-[node name="DeveloppersInfo" type="HBoxContainer" parent="Background/ScrollContainer/VScrollBar"]
-layout_mode = 0
-offset_left = -252.0
-offset_top = 209.0
-offset_right = 248.0
-offset_bottom = 249.0
-theme_override_constants/separation = 500
-
-[node name="GameDeveloperInfo" parent="Background/ScrollContainer/VScrollBar/DeveloppersInfo" instance=ExtResource("1_eqyct")]
-layout_mode = 2
-
-[node name="GameDeveloperInfo2" parent="Background/ScrollContainer/VScrollBar/DeveloppersInfo" instance=ExtResource("1_eqyct")]
-layout_mode = 2
 
 [node name="StudioInfoContainer" type="Control" parent="Background"]
 layout_mode = 1
