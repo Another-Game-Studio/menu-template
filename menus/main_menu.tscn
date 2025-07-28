@@ -1,75 +1,44 @@
-[gd_scene load_steps=4 format=3 uid="uid://b3nxqymhrgwtn"]
+[gd_scene load_steps=4 format=3 uid="uid://dfkbo2qg82rgl"]
 
 [ext_resource type="Theme" uid="uid://bdssu6ufbrowi" path="res://assets/themes/menu_theme.tres" id="1_8gy84"]
+[ext_resource type="PackedScene" uid="uid://cw8nlt4ul3mme" path="res://menus/menu_template.tscn" id="1_ij7vn"]
 [ext_resource type="Script" uid="uid://bqpnfqmvccvrb" path="res://menus/main_menu.gd" id="1_yjgyn"]
-[ext_resource type="Texture2D" uid="uid://cipxq8cnmr2ne" path="res://icon.svg" id="2_ij7vn"]
 
-[node name="MainMenu" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="MainMenu" instance=ExtResource("1_ij7vn")]
 script = ExtResource("1_yjgyn")
 
-[node name="Background" type="Panel" parent="."]
+[node name="ButtonContainer" type="VBoxContainer" parent="Background" index="1"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("1_8gy84")
-metadata/_edit_use_anchors_ = true
-
-[node name="LogoContainer" type="Control" parent="Background"]
-layout_mode = 1
-anchor_left = 0.5
-anchor_top = 0.132407
-anchor_right = 0.5
-anchor_bottom = 0.132407
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 40.0
-grow_horizontal = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="GameLogo" type="Sprite2D" parent="Background/LogoContainer"]
-texture = ExtResource("2_ij7vn")
-
-[node name="ButtonContainer" type="VBoxContainer" parent="Background"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -280.0
-offset_top = -252.0
-offset_right = 280.0
-offset_bottom = 218.0
+anchors_preset = -1
+anchor_left = 0.354
+anchor_top = 0.267
+anchor_right = 0.646
+anchor_bottom = 0.702
+offset_left = 0.320007
+offset_top = -0.360016
+offset_right = -0.320068
+offset_bottom = -0.160034
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_8gy84")
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="NewGameButton" type="Button" parent="Background/ButtonContainer"]
+[node name="NewGameButton" type="Button" parent="Background/ButtonContainer" index="0"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme = ExtResource("1_8gy84")
 text = "New game"
 
-[node name="OptionsButton" type="Button" parent="Background/ButtonContainer"]
+[node name="OptionsButton" type="Button" parent="Background/ButtonContainer" index="1"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme = ExtResource("1_8gy84")
 text = "Options"
 
-[node name="CreditsButton" type="Button" parent="Background/ButtonContainer"]
+[node name="CreditsButton" type="Button" parent="Background/ButtonContainer" index="2"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
@@ -77,42 +46,9 @@ theme = ExtResource("1_8gy84")
 text = "Credits
 "
 
-[node name="ExitButton" type="Button" parent="Background/ButtonContainer"]
+[node name="ExitButton" type="Button" parent="Background/ButtonContainer" index="3"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme = ExtResource("1_8gy84")
 text = "Exit"
-
-[node name="StudioInfoContainer" type="Control" parent="Background"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -240.0
-offset_right = 20.0
-offset_bottom = -200.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="MadeByLabel" type="Label" parent="Background/StudioInfoContainer"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -85.5
-offset_top = -49.0
-offset_right = 85.5
-grow_horizontal = 2
-grow_vertical = 0
-theme = ExtResource("1_8gy84")
-text = "made by"
-
-[node name="StudioLogo" type="Sprite2D" parent="Background/StudioInfoContainer"]
-position = Vector2(20, 136)
-texture = ExtResource("2_ij7vn")

@@ -6,6 +6,7 @@ extends Control
 @onready var exit_button: Button = %ExitButton
 
 @onready var credits_scene: PackedScene = preload("res://menus/credits/credits_scene.tscn")
+@onready var options_scene: PackedScene = preload("res://menus/options/options_scene.tscn")
 
 func _ready() -> void:
 	new_game_button.button_down.connect(_on_new_game_button_down)
@@ -17,7 +18,7 @@ func _on_new_game_button_down() -> void:
 	get_tree().change_scene_to_file("res://path/to/game_scene.tscn")
 
 func _on_options_button_down() -> void:
-	pass
+	get_tree().change_scene_to_packed(options_scene)
 
 func _on_credits_button_down() -> void:
 	get_tree().change_scene_to_packed(credits_scene)
