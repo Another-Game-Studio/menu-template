@@ -19,8 +19,8 @@ func _physics_process(delta: float) -> void:
 	var power : float = controls.power
 	var direction : float = controls.steering
 	
-	var RPM_left : float = abs($wheel_back_left.get_rpm())
-	var RPM_right : float = abs($wheel_back_right.get_rpm())
+	var RPM_left : float = abs(%wheel_back_left.get_rpm())
+	var RPM_right : float = abs(%wheel_back_right.get_rpm())
 	var RPM : float = (RPM_left+RPM_right)/2.0
 	var torque : float = power * max_torque * (1.0-RPM/max_RPM)
 	engine_force = torque
