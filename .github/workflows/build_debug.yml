@@ -1,0 +1,90 @@
+name: Debug build
+run-name: Menu template build
+on:
+  push: 
+    branches:
+      - main
+  workflow_dispatch: 
+    inputs: 
+      job_target:
+        description: 'Select the platform'
+        required: true
+        default: 'Both'
+        type: choice
+        options:
+          - Linux
+          - Windows
+          - Both
+          
+env:
+  GODOT_VERSION: 4.4.1
+  GODOT_PROJECT_LOCATION: project.godot
+  EXPORT_FOLDER_LINUX: bin/linux
+  EXPORT_FOLDER_WINDOWS: bin/windows
+  APPLICATION_NAME: Menu_Template
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: ubuntu:latest
+    steps:
+      - name: Settings extra variables
+        run:
+          export DATE=$(date +'%Y-%m-%d')
+          echo "DATE=$DATE" >> $GITHUB_ENV
+          echo "MAIN_FOLDER=$(pwd)" >> $GITHUB_ENV
+      
+      - name: Installing dependencies
+        run: apt install -y git bash yasm python python-pip wget unzip tar mingw-w64 fontconfig freetype freetype-devel fontconfig-devel libstdc++
+        
+      - name: Checkout submodules
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      
+      - name: Debug job_target
+        run: echo "job_target=${{ github.event.inputs.job_target }}"
+        
+      - name: Prepare Godot
+        run: |
+          wget -q -O godot_linux.zip https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION}}-stable/Godot_v${{ env.GODOT_VERSION }}-stable_linux.x86_64.zip
+          unzip godot_linux.zip
+          wget -q -O godot_export_templates.tpz https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}-stable/Godot_v${{ env.GODOT_VERSION }}-stable_export_templates.tpz
+          mkdir -p ~/.local/share/godot/export_templates/${{ env.GODOT_VERSION }}.stable
+          unzip godot_export_templates.tpz -d ~/.local/share/godot/export_templates/${{ env.GODOT_VERSION }}.stable
+          mv ~/.local/share/godot/export_templates/${{ env.GODOT_VERSION }}.stable/templates/* ~/.local/share/godot/export_templates/${{ env.GODOT_VERSION }}.stable
+          
+      - name: Building debug Linux
+        if: ${{ github.event.inputs.job_target == 'Linux' || github.event.inputs.job_target == 'Both' }}
+        run: |
+          mkdir -p ${{ env.EXPORT_FOLDER_LINUX }}
+          ./Godot_v${{ env.GODOT_VERSION }}-stable_linux.x86_64 --import ${{ env.GODOT_PROJECT_LOCATION }} --quiet --headless --export-debug Linux ${{ env.MAIN_FOLDER }}/${{ env.EXPORT_FOLDER_LINUX }}/${{ env.APPLICATION_NAME }}.x86_64
+          chmod +x ${{ env.EXPORT_FOLDER_LINUX }}/${{ env.APPLICATION_NAME }}.sh
+          chmod +x ${{ env.EXPORT_FOLDER_LINUX }}/${{ env.APPLICATION_NAME }}.86_64
+     
+      - name: Tar files
+        if: ${{ github.event.inputs.job_target == 'Linux' || github.event.inputs.job_target == 'Both' }}
+        run: tar -cvf ${{ env.APPLICATION_NAME }}_linux_debug_${{ env.DATE }}.tar ${{ env.EXPORT_FOLDER_LINUX }}
+          
+      - name: Uploading GDExtension Linux artifact debug
+        if: ${{ github.event.inputs.job_target == 'Linux' || github.event.inputs.job_target == 'Both' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.APPLICATION_NAME }}_linux_debug_$${{ env.DATE }}.tar
+          path: ${{ env.APPLICATION_NAME }}_linux_debug_$${{ env.DATE }}.tar
+          
+      - name: Building debug Windows
+        if: ${{ github.event.inputs.job_target == 'Windows' || github.event.inputs.job_target == 'Both' }}
+        run: |
+          mkdir -p ${{ env.EXPORT_FOLDER_WINDOWS }}
+          ./Godot_v${{ env.GODOT_VERSION }}-stable_linux.x86_64 --import ${{ env.GODOT_PROJECT_LOCATION }} --quiet --headless --export-debug Windows ${{ env.MAIN_FOLDER }}/${{ env.EXPORT_FOLDER_WINDOWS }}/${{ env.APPLICATION_NAME }}.exe
+          
+      - name: Uploading GDExtension Windows artifact debug
+        if: ${{ github.event.inputs.job_target == 'Windows' || github.event.inputs.job_target == 'Both' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.APPLICATION_NAME }}_windows_debug_$${{ env.DATE }}
+          path: ${{ env.EXPORT_FOLDER_WINDOWS }}/
+
+
