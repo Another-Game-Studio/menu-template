@@ -18,7 +18,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-MenuMusic="res://autoloads/menu_music.tscn"
+MenuMusic="*res://autoloads/menu_music.tscn"
+SignalBus="*res://autoloads/SignalBus.gd"
 
 [debug]
 
@@ -31,10 +32,6 @@ gdscript/warnings/unsafe_cast=1
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/stretch/mode="canvas_items"
-
-[dotnet]
-
-project/assembly_name="Menu template"
 
 [editor_plugins]
 

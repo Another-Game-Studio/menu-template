@@ -1,4 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://b61r7nj3hajim"]
+[gd_scene load_steps=5 format=3 uid="uid://b61r7nj3hajim"]
+
+[ext_resource type="Script" uid="uid://dw45pdeav47ru" path="res://level/start_area.gd" id="1_7lnir"]
+
+[sub_resource type="Environment" id="Environment_yy828"]
+background_mode = 1
+background_color = Color(0.556835, 0.701453, 1, 1)
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_sky_contribution = 0.34
+ambient_light_energy = 1.43
+reflected_light_source = 2
 
 [sub_resource type="Curve3D" id="Curve3D_yy828"]
 closed = true
@@ -8,13 +19,20 @@ _data = {
 }
 point_count = 16
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_yy828"]
+size = Vector3(0.285034, 1, 1.63062)
+
 [node name="Level" type="Node3D"]
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_yy828")
+
 [node name="Track" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0506707, -0.0119669, -0.0096786)
 curve = SubResource("Curve3D_yy828")
 
 [node name="TrackPolygon" type="CSGPolygon3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00169957, -0.00346947, -0.00271988)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0523703, -0.0154364, -0.0123985)
 use_collision = true
 polygon = PackedVector2Array(-0.0542652, 0.0335808, -0.055318, 0.0458909, 0.1122, 0.0489211, 0.109175, 0.0242188)
 mode = 2
@@ -29,3 +47,12 @@ path_continuous_u = true
 path_u_distance = 1.0
 path_joined = true
 smooth_faces = true
+
+[node name="StartArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.14559)
+script = ExtResource("1_7lnir")
+
+[node name="StartAreaCollision" type="CollisionShape3D" parent="StartArea"]
+transform = Transform3D(0.10549, 0, -0.0186274, 0, 0.107122, 0, 0.0186274, 0, 0.10549, 0.0375541, 0, 0.00754762)
+shape = SubResource("BoxShape3D_yy828")
+debug_color = Color(0.982746, 0, 0.359392, 0.42)
