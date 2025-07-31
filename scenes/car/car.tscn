@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://bvguu1katamg7"]
+[gd_scene load_steps=19 format=4 uid="uid://bvguu1katamg7"]
 
 [ext_resource type="Script" uid="uid://bivxyc3f6r7b8" path="res://scenes/car/car.gd" id="1_yhfra"]
 [ext_resource type="Texture2D" uid="uid://chxrhanhk661j" path="res://assets/meshes/Textures/colormap.png" id="1_yr3gr"]
@@ -6,10 +6,14 @@
 [ext_resource type="Script" uid="uid://c68vx1knfo2rq" path="res://scenes/car/camera.gd" id="3_x7uf8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yr3gr"]
-size = Vector3(1.31738, 1.08453, 2.02722)
+size = Vector3(1.31738, 1.03261, 2.02722)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yhfra"]
-size = Vector3(1.28387, 0.738708, 1)
+size = Vector3(1.28387, 0.696709, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x7uf8"]
+radius = 0.720369
+height = 2.9719
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e4shf"]
 resource_name = "colormap"
@@ -194,12 +198,20 @@ script = ExtResource("1_yhfra")
 controls = NodePath("PlayerController")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00244141, 0.554901, -0.437561)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00244141, 0.580862, -0.437561)
+visible = false
 shape = SubResource("BoxShape3D_yr3gr")
+disabled = true
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00979614, 0.380695, 0.831385)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00979614, 0.401695, 0.831385)
+visible = false
 shape = SubResource("BoxShape3D_yhfra")
+disabled = true
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.702543, -0.0412188)
+shape = SubResource("CapsuleShape3D_x7uf8")
 
 [node name="CarBody" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, -0.025)

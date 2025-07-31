@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://b61r7nj3hajim"]
+[gd_scene load_steps=6 format=3 uid="uid://b61r7nj3hajim"]
 
 [ext_resource type="Script" uid="uid://dw45pdeav47ru" path="res://level/start_area.gd" id="1_7lnir"]
+[ext_resource type="PackedScene" uid="uid://bvguu1katamg7" path="res://scenes/car/car.tscn" id="2_5gx2l"]
 
 [sub_resource type="Environment" id="Environment_yy828"]
 background_mode = 1
@@ -27,17 +28,24 @@ size = Vector3(0.285034, 1, 1.63062)
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_yy828")
 
-[node name="Track" type="Path3D" parent="."]
+[node name="Car" parent="." instance=ExtResource("2_5gx2l")]
+transform = Transform3D(0.188993, 0, 0.981979, 0, 1, 0, -0.981979, 0, 0.188993, 0, 17.773, -210.737)
+
+[node name="Track2" type="Node3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+
+[node name="Track" type="Path3D" parent="Track2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0506707, -0.0119669, -0.0096786)
 curve = SubResource("Curve3D_yy828")
 
-[node name="TrackPolygon" type="CSGPolygon3D" parent="."]
+[node name="TrackPolygon" type="CSGPolygon3D" parent="Track2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0523703, -0.0154364, -0.0123985)
 use_collision = true
+collision_mask = 6
 polygon = PackedVector2Array(-0.0542652, 0.0335808, -0.055318, 0.0458909, 0.1122, 0.0489211, 0.109175, 0.0242188)
 mode = 2
 path_node = NodePath("../Track")
-path_interval_type = 0
+path_interval_type = 1
 path_interval = 0.1
 path_simplify_angle = 0.0
 path_rotation = 1
@@ -48,11 +56,11 @@ path_u_distance = 1.0
 path_joined = true
 smooth_faces = true
 
-[node name="StartArea" type="Area3D" parent="."]
+[node name="StartArea" type="Area3D" parent="Track2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.14559)
 script = ExtResource("1_7lnir")
 
-[node name="StartAreaCollision" type="CollisionShape3D" parent="StartArea"]
+[node name="StartAreaCollision" type="CollisionShape3D" parent="Track2/StartArea"]
 transform = Transform3D(0.10549, 0, -0.0186274, 0, 0.107122, 0, 0.0186274, 0, 0.10549, 0.0375541, 0, 0.00754762)
 shape = SubResource("BoxShape3D_yy828")
 debug_color = Color(0.982746, 0, 0.359392, 0.42)
