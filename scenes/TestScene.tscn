@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcfa0gy8knvwp"]
+
+[ext_resource type="PackedScene" uid="uid://bvguu1katamg7" path="res://scenes/car/car.tscn" id="1_2gju5"]
+[ext_resource type="Script" uid="uid://d4nj1ysissjg4" path="res://scenes/gui.gd" id="2_rlkm5"]
+
+[node name="TestScene" type="Node3D"]
+
+[node name="Car" parent="." instance=ExtResource("1_2gju5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.22672, 0)
+
+[node name="GUI" type="Control" parent="." node_paths=PackedStringArray("car")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_rlkm5")
+car = NodePath("../Car")
+
+[node name="Label" type="Label" parent="GUI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.912357, 0.40939, 0.00220324, 0.000732022, -0.00701299, 0.999975, 0.409395, -0.912333, -0.00669804, 2.75838, 1.32126, 0)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.9974, 0, 0)
+use_collision = true
+radius = 40.0
+sides = 20
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="CSGCylinder3D"]
+operation = 2
+radius = 30.0
+sides = 20
