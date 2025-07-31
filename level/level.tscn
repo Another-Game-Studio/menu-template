@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://b61r7nj3hajim"]
+
+[sub_resource type="Curve3D" id="Curve3D_yy828"]
+closed = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -2.27631, 0.0519214, 2.01284, 0, 0, 0, 0, 0, 0, -2.6591, -0.0068562, 1.24219, 0, 0, 0, 0, 0, 0, -3.42213, 0, 0.17463, 0, 0, 0, 0, 0, 0, -2.40499, 0, -0.536143, 0, 0, 0, 0, 0, 0, -1.98264, 0.301587, -0.970361, 0, 0, 0, 0, 0, 0, -0.860893, 0, -2.31308, 0, 0, 0, 0, 0, 0, 0.462615, 0, -2.01896, 0, 0, 0, 0, 0, 0, 1.56554, 0, -0.874791, 0, 0, 0, 0, 0, 0, 2.3593, 0, -1.20636, 0, 0, 0, 0, 0, 0, 2.71135, 0, -1.02633, 0, 0, 0, 0, 0, 0, 2.68684, 0, 0.854766, 0, 0, 0, 0, 0, 0, 2.50915, 0, 1.87191, 0, 0, 0, 0, 0, 0, 1.21015, 0, 2.20404, 0, 0, 0, 0, 0, 0, 0.621926, 0, 1.60769, 0, 0, 0, 0, 0, 0, -0.517295, 0.220968, 1.67499, 0, 0, 0, 0, 0, 0, -0.958931, 0, 2.02509),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 16
+
+[node name="Level" type="Node3D"]
+
+[node name="Track" type="Path3D" parent="."]
+curve = SubResource("Curve3D_yy828")
+
+[node name="TrackPolygon" type="CSGPolygon3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00169957, -0.00346947, -0.00271988)
+use_collision = true
+polygon = PackedVector2Array(-0.0542652, 0.0335808, -0.055318, 0.0458909, 0.1122, 0.0489211, 0.109175, 0.0242188)
+mode = 2
+path_node = NodePath("../Track")
+path_interval_type = 0
+path_interval = 0.1
+path_simplify_angle = 0.0
+path_rotation = 1
+path_rotation_accurate = false
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = true
+smooth_faces = true
