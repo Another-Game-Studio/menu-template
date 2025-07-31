@@ -245,8 +245,9 @@ mesh = SubResource("ArrayMesh_nckhn")
 skeleton = NodePath("")
 
 [node name="CameraArm" type="SpringArm3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 collision_mask = 0
-spring_length = 5.0
+spring_length = 7.5
 script = ExtResource("3_x7uf8")
 
 [node name="Camera3D" type="Camera3D" parent="CameraArm"]
@@ -256,3 +257,7 @@ current = true
 unique_name_in_owner = true
 script = ExtResource("3_rytg7")
 metadata/_custom_type_script = "uid://bhacn2rp1y0dv"
+
+[node name="Barycenter" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.640381, -0.490654)
