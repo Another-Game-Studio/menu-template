@@ -188,7 +188,6 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_586en")
 
 [node name="Car" type="VehicleBody3D" node_paths=PackedStringArray("controls")]
-mass = 200.0
 script = ExtResource("1_yhfra")
 controls = NodePath("PlayerController")
 
@@ -206,7 +205,6 @@ mesh = SubResource("ArrayMesh_rhjej")
 skeleton = NodePath("")
 
 [node name="wheel_front_left" type="VehicleWheel3D" parent="."]
-unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.3, 0.81)
 use_as_steering = true
 wheel_radius = 0.3
@@ -217,7 +215,6 @@ mesh = SubResource("ArrayMesh_t8ycg")
 skeleton = NodePath("")
 
 [node name="wheel_front_right" type="VehicleWheel3D" parent="."]
-unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.3, 0.81)
 use_as_steering = true
 wheel_radius = 0.3
@@ -228,7 +225,6 @@ mesh = SubResource("ArrayMesh_hx3bu")
 skeleton = NodePath("")
 
 [node name="wheel_back_left" type="VehicleWheel3D" parent="."]
-unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.3, -0.81)
 use_as_traction = true
 wheel_radius = 0.3
@@ -239,7 +235,6 @@ mesh = SubResource("ArrayMesh_3gon3")
 skeleton = NodePath("")
 
 [node name="wheel_back_right" type="VehicleWheel3D" parent="."]
-unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.3, -0.81)
 use_as_traction = true
 wheel_radius = 0.3
@@ -250,7 +245,6 @@ mesh = SubResource("ArrayMesh_nckhn")
 skeleton = NodePath("")
 
 [node name="CameraArm" type="SpringArm3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.732801, 0)
 collision_mask = 0
 spring_length = 5.0
 script = ExtResource("3_x7uf8")
