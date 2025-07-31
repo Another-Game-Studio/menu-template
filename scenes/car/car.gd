@@ -2,7 +2,7 @@
 extends VehicleBody3D
 class_name Car
 
-const max_torque : int = 300
+const max_torque : int = 500
 const max_RPM : int = 450
 const turn_speed : float = 3.0
 const turn_amount : float = 0.3

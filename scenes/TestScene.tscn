@@ -5,36 +5,6 @@
 
 [node name="TestScene" type="Node3D"]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.685688, -0.579728, 14.6883)
-use_collision = true
-size = Vector3(6.76316, 1, 33.1393)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="."]
-transform = Transform3D(0.341561, 0, -0.93986, 0, 1, 0, 0.93986, 0, 0.341561, -12.2807, -0.579728, 33.2413)
-use_collision = true
-size = Vector3(6.76316, 1, 33.1393)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="."]
-transform = Transform3D(-0.327152, 0, -0.944972, 0, 1, 0, 0.944972, 0, -0.327152, -40.1686, -0.579728, 33.2245)
-use_collision = true
-size = Vector3(6.76316, 1, 33.1393)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="."]
-transform = Transform3D(-0.95874, 0, 0.284283, 0, 1, 0, -0.284283, 0, -0.95874, -49.4373, -0.579728, 1.35028)
-use_collision = true
-size = Vector3(6.76316, 1, 60.8865)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="."]
-transform = Transform3D(0.0389981, 0, 0.999239, 0, 1, 0, -0.999239, 0, 0.0389981, -27.3015, -0.579728, -25.8168)
-use_collision = true
-size = Vector3(6.76316, 1, 33.4912)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="."]
-transform = Transform3D(0.827365, 0, 0.561665, 0, 1, 0, -0.561665, 0, 0.827365, -5.66848, -0.579728, -13.7388)
-use_collision = true
-size = Vector3(6.76316, 1, 33.4912)
-
 [node name="Car" parent="." instance=ExtResource("1_2gju5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.22672, 0)
 
@@ -53,3 +23,14 @@ offset_bottom = 23.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.912357, 0.40939, 0.00220324, 0.000732022, -0.00701299, 0.999975, 0.409395, -0.912333, -0.00669804, 2.75838, 1.32126, 0)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.9974, 0, 0)
+use_collision = true
+radius = 40.0
+sides = 20
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="CSGCylinder3D"]
+operation = 2
+radius = 30.0
+sides = 20
