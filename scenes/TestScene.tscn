@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dcfa0gy8knvwp"]
+[gd_scene load_steps=8 format=3 uid="uid://dcfa0gy8knvwp"]
 
 [ext_resource type="PackedScene" uid="uid://bvguu1katamg7" path="res://scenes/car/car.tscn" id="1_2gju5"]
 [ext_resource type="Script" uid="uid://d4nj1ysissjg4" path="res://scenes/gui.gd" id="2_rlkm5"]
@@ -16,6 +16,9 @@ sky_material = SubResource("ProceduralSkyMaterial_n77mx")
 [sub_resource type="Environment" id="Environment_m5dm6"]
 background_mode = 2
 sky = SubResource("Sky_nb1wl")
+
+[sub_resource type="PrismMesh" id="PrismMesh_rlkm5"]
+size = Vector3(1, 0.2, 1)
 
 [node name="TestScene" type="Node3D"]
 
@@ -55,3 +58,9 @@ material = SubResource("StandardMaterial3D_rlkm5")
 environment = SubResource("Environment_m5dm6")
 
 [node name="Car" parent="." instance=ExtResource("1_2gju5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.57909, 0)
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+transform = Transform3D(3.68113, 0, 14.5413, 0, 15, 0, -14.5413, 0, 3.68113, 0, 1.9524, 12.2706)
+use_collision = true
+mesh = SubResource("PrismMesh_rlkm5")
