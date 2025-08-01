@@ -31,17 +31,12 @@ jobs:
     container:
       image: archlinux:latest
     steps:
-      - name: Set up job target
-        if: ${{ github.event.inputs.job_target == '' }}
-        env:
-          job_target: Both
-        run: echo ${{ github.event.inputs.job_target }} >> $GITHUB_ENV
-
       - name: Settings extra variables
         run:
           export DATE=$(date +'%Y-%m-%d')
           echo "DATE=$DATE" >> $GITHUB_ENV
           echo "MAIN_FOLDER=$(pwd)" >> $GITHUB_ENV
+          echo "JOB_TARGET=${{ inputs.job_target || 'Both' }}" >> $GITHUB_ENV
 
       - name: Installing dependencies
         run: pacman -Syu --noconfirm git bash yasm python python-pip scons gcc diffutils make wget unzip tar mingw-w64
@@ -50,9 +45,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: recursive
-
-      - name: Debug job_target
-        run: echo "job_target=${{ github.event.inputs.job_target }}"
 
       - name: Prepare Godot
         run: |
@@ -64,7 +56,7 @@ jobs:
           mv ~/.local/share/godot/export_templates/${{ env.GODOT_VERSION }}.stable/templates/* ~/.local/share/godot/export_templates/${{ env.GODOT_VERSION }}.stable
 
       - name: Building debug Linux
-        if: ${{ github.event.inputs.job_target == 'Linux' || github.event.inputs.job_target == 'Both' }}
+        if: ${{ env.JOB_TARGET == 'Linux' || env.JOB_TARGET == 'Both' }}
         run: |
           mkdir -p ${{ env.EXPORT_FOLDER_LINUX }}
           ./Godot_v${{ env.GODOT_VERSION }}-stable_linux.x86_64 --import ${{ env.GODOT_PROJECT_LOCATION }} --quiet --headless --export-debug Linux ${{ env.MAIN_FOLDER }}/${{ env.EXPORT_FOLDER_LINUX }}/${{ env.APPLICATION_NAME }}.x86_64
@@ -72,24 +64,24 @@ jobs:
           chmod +x ${{ env.EXPORT_FOLDER_LINUX }}/${{ env.APPLICATION_NAME }}.86_64
 
       - name: Tar files
-        if: ${{ github.event.inputs.job_target == 'Linux' || github.event.inputs.job_target == 'Both' }}
+        if: ${{ env.JOB_TARGET == 'Linux' || env.JOB_TARGET == 'Both' }}
         run: tar -cvf ${{ env.APPLICATION_NAME }}_linux_debug_${{ env.DATE }}.tar ${{ env.EXPORT_FOLDER_LINUX }}
 
       - name: Uploading GDExtension Linux artifact debug
-        if: ${{ github.event.inputs.job_target == 'Linux' || github.event.inputs.job_target == 'Both' }}
+        if: ${{ env.JOB_TARGET == 'Linux' || env.JOB_TARGETt == 'Both' }}
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.APPLICATION_NAME }}_linux_debug_$${{ env.DATE }}.tar
           path: ${{ env.APPLICATION_NAME }}_linux_debug_$${{ env.DATE }}.tar
 
       - name: Building debug Windows
-        if: ${{ github.event.inputs.job_target == 'Windows' || github.event.inputs.job_target == 'Both' }}
+        if: ${{ env.JOB_TARGET == 'Windows' || env.JOB_TARGET == 'Both' }}
         run: |
           mkdir -p ${{ env.EXPORT_FOLDER_WINDOWS }}
           ./Godot_v${{ env.GODOT_VERSION }}-stable_linux.x86_64 --import ${{ env.GODOT_PROJECT_LOCATION }} --quiet --headless --export-debug Windows ${{ env.MAIN_FOLDER }}/${{ env.EXPORT_FOLDER_WINDOWS }}/${{ env.APPLICATION_NAME }}.exe
 
       - name: Uploading GDExtension Windows artifact debug
-        if: ${{ github.event.inputs.job_target == 'Windows' || github.event.inputs.job_target == 'Both' }}
+        if: ${{ env.JOB_TARGET == 'Windows' || env.JOB_TARGET == 'Both' }}
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.APPLICATION_NAME }}_windows_debug_$${{ env.DATE }}
