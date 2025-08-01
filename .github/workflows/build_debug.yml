@@ -27,8 +27,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: ubuntu:latest
+      image: archlinux:latest
     steps:
+      - name: Set up job target
+        if: ${{ github.event.inputs.job_target == '' }}
+        env:
+          job_target: Both
+        
       - name: Settings extra variables
         run:
           export DATE=$(date +'%Y-%m-%d')
@@ -36,7 +41,7 @@ jobs:
           echo "MAIN_FOLDER=$(pwd)" >> $GITHUB_ENV
       
       - name: Installing dependencies
-        run: apt install -y git bash yasm python python-pip wget unzip tar mingw-w64 fontconfig freetype freetype-devel fontconfig-devel libstdc++
+        run: pacman -Syu --noconfirm git bash yasm python python-pip scons gcc diffutils make wget unzip tar mingw-w46
         
       - name: Checkout submodules
         uses: actions/checkout@v4
