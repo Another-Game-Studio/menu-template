@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://dcfa0gy8knvwp"]
+[gd_scene load_steps=12 format=3 uid="uid://dcfa0gy8knvwp"]
 
 [ext_resource type="Script" uid="uid://d4nj1ysissjg4" path="res://scenes/gui.gd" id="2_rlkm5"]
-[ext_resource type="PackedScene" path="res://addons/gevp/scenes/vehicle_controller.tscn" id="3_m5dm6"]
+[ext_resource type="PackedScene" uid="uid://c3ixqkc6k13yi" path="res://addons/gevp/scenes/vehicle_controller.tscn" id="3_m5dm6"]
 [ext_resource type="PackedScene" uid="uid://dfgyet2b0uept" path="res://scenes/obstacles/ExplosiveBarrel.tscn" id="3_n77mx"]
-[ext_resource type="PackedScene" path="res://addons/gevp/scenes/arcade_car.tscn" id="4_fws1a"]
-[ext_resource type="PackedScene" path="res://addons/gevp/scenes/engine_sound.tscn" id="5_xpysu"]
+[ext_resource type="PackedScene" uid="uid://fo6kt54q87tf" path="res://addons/gevp/scenes/arcade_car.tscn" id="4_fws1a"]
+[ext_resource type="PackedScene" uid="uid://b2hlchrj4h2b7" path="res://addons/gevp/scenes/engine_sound.tscn" id="5_xpysu"]
+[ext_resource type="Script" uid="uid://c3nxh0p0i6kka" path="res://addons/gevp/scripts/camera.gd" id="6_fws1a"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rlkm5"]
 albedo_color = Color(0, 0.341176, 0, 1)
@@ -79,6 +80,15 @@ max_contacts_reported = 5
 [node name="VehicleController" parent="." node_paths=PackedStringArray("vehicle_node") instance=ExtResource("3_m5dm6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.38673, 1.37856, 0)
 vehicle_node = NodePath("VehicleRigidBody")
+string_brake_input = "brake"
+string_steer_left = "left"
+string_steer_right = "right"
+string_throttle_input = "gas"
+string_handbrake_input = "handbrake"
+string_clutch_input = "clutch"
+string_toggle_transmission = "toggle-transmission"
+string_shift_up = "shift-up"
+string_shift_down = "shift-down"
 
 [node name="VehicleRigidBody" parent="VehicleController" instance=ExtResource("4_fws1a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.926611, 0)
@@ -100,3 +110,10 @@ motor_moment = 0.01
 [node name="EngineSound" parent="VehicleController/VehicleRigidBody" node_paths=PackedStringArray("vehicle") instance=ExtResource("5_xpysu")]
 max_db = -24.0
 vehicle = NodePath("..")
+
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("follow_this")]
+transform = Transform3D(1, 0, 0, 0, 0.989776, 0.142629, 0, -0.142629, 0.989776, 4.05282, 1.58316, 5.80061)
+current = true
+script = ExtResource("6_fws1a")
+follow_distance = 3
+follow_this = NodePath("../VehicleController/VehicleRigidBody")
