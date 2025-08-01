@@ -36,7 +36,7 @@ jobs:
           export DATE=$(date +'%Y-%m-%d')
           echo "DATE=$DATE" >> $GITHUB_ENV
           echo "MAIN_FOLDER=$(pwd)" >> $GITHUB_ENV
-          echo "JOB_TARGET=${{ inputs.job_target || 'Both' }}" >> $GITHUB_ENV
+          echo "JOB_TARGET='Both'" >> $GITHUB_ENV
 
       - name: Debug job target
         run: echo ${{ env.JOB_TARGET }}
