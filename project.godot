@@ -20,7 +20,6 @@ config/icon="res://icon.svg"
 
 MenuMusic="*res://autoloads/menu_music.tscn"
 SignalBus="*res://autoloads/SignalBus.gd"
-
 DebugControls="*res://autoloads/DebugControls.gd"
 
 [debug]
@@ -34,6 +33,10 @@ gdscript/warnings/unsafe_cast=1
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/stretch/mode="canvas_items"
+
+[dotnet]
+
+project/assembly_name="Menu template"
 
 [editor_plugins]
 
@@ -109,14 +112,12 @@ exit={
 
 [layer_names]
 
-
 3d_render/layer_1="Car"
 3d_render/layer_2="Track"
 3d_render/layer_3="Obstacles"
 3d_physics/layer_1="Car"
 3d_physics/layer_2="Race"
 3d_physics/layer_3="Obstacle"
-
 
 [rendering]
 
