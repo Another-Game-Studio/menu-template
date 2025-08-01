@@ -38,13 +38,16 @@ jobs:
           echo "MAIN_FOLDER=$(pwd)" >> $GITHUB_ENV
           echo "JOB_TARGET=${{ inputs.job_target || 'Both' }}" >> $GITHUB_ENV
 
+      - name: Debug job target
+        run: echo ${{ env.JOB_TARGET }}
+        
       - name: Installing dependencies
         run: pacman -Syu --noconfirm git bash yasm python python-pip scons gcc diffutils make wget unzip tar mingw-w64
 
       - name: Checkout submodules
         uses: actions/checkout@v4
         with:
-          submodules: recursive
+          submodules: recursive    
 
       - name: Prepare Godot
         run: |
