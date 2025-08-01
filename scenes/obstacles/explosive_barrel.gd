@@ -17,7 +17,9 @@ func explode() -> void:
 	explosion.explosion()
 	queue_free()
 
-func _on_body_entered(body: PhysicsBody3D) -> void:
+func _on_body_entered(body: Node3D) -> void:
+	if not(body is RigidBody3D):
+		pass
 	print("Body entered:"+str(body))
 	if body.get_collision_layer_value(1):
 		explode()

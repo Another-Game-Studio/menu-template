@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://dcfa0gy8knvwp"]
+[gd_scene load_steps=11 format=3 uid="uid://dcfa0gy8knvwp"]
 
-[ext_resource type="PackedScene" uid="uid://bvguu1katamg7" path="res://scenes/car/car.tscn" id="1_2gju5"]
 [ext_resource type="Script" uid="uid://d4nj1ysissjg4" path="res://scenes/gui.gd" id="2_rlkm5"]
+[ext_resource type="PackedScene" path="res://addons/gevp/scenes/vehicle_controller.tscn" id="3_m5dm6"]
 [ext_resource type="PackedScene" uid="uid://dfgyet2b0uept" path="res://scenes/obstacles/ExplosiveBarrel.tscn" id="3_n77mx"]
+[ext_resource type="PackedScene" path="res://addons/gevp/scenes/arcade_car.tscn" id="4_fws1a"]
+[ext_resource type="PackedScene" path="res://addons/gevp/scenes/engine_sound.tscn" id="5_xpysu"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rlkm5"]
 albedo_color = Color(0, 0.341176, 0, 1)
@@ -61,10 +63,6 @@ material = SubResource("StandardMaterial3D_rlkm5")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_m5dm6")
 
-[node name="Car" parent="." instance=ExtResource("1_2gju5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.57909, 0)
-collision_mask = 6
-
 [node name="CSGMesh3D" type="CSGMesh3D" parent="."]
 transform = Transform3D(3.68113, 0, 14.5413, 0, 15, 0, -14.5413, 0, 3.68113, 0, 1.9524, 12.2706)
 use_collision = true
@@ -77,3 +75,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.3168, 2.32151, 31.4773)
 collision_mask = 3
 contact_monitor = true
 max_contacts_reported = 5
+
+[node name="VehicleController" parent="." node_paths=PackedStringArray("vehicle_node") instance=ExtResource("3_m5dm6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.38673, 1.37856, 0)
+vehicle_node = NodePath("VehicleRigidBody")
+
+[node name="VehicleRigidBody" parent="VehicleController" instance=ExtResource("4_fws1a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.926611, 0)
+collision_mask = 14
+center_of_mass_mode = 1
+linear_damp_mode = 1
+angular_damp_mode = 1
+steering_speed = 30.0
+countersteer_speed = 30.0
+steering_speed_decay = 0.0
+steering_slip_assist = 1.0
+countersteer_assist = 1.0
+throttle_steering_adjust = 1.0
+brake_force_multiplier = 10.0
+max_torque = 1000.0
+motor_brake = 1000.0
+motor_moment = 0.01
+
+[node name="EngineSound" parent="VehicleController/VehicleRigidBody" node_paths=PackedStringArray("vehicle") instance=ExtResource("5_xpysu")]
+max_db = -24.0
+vehicle = NodePath("..")
