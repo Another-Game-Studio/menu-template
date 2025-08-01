@@ -1,7 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://b61r7nj3hajim"]
 
 [ext_resource type="Script" uid="uid://dw45pdeav47ru" path="res://level/start_area.gd" id="1_7lnir"]
+
 [ext_resource type="Script" uid="uid://dj6xjt6pc5skd" path="res://level/level.gd" id="1_qohg2"]
+
 
 [sub_resource type="Environment" id="Environment_yy828"]
 background_mode = 1
@@ -21,13 +23,16 @@ _data = {
 point_count = 16
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yy828"]
+
 size = Vector3(0.285034, 4.50366, 16.3251)
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_qohg2")
 
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_yy828")
+
 
 [node name="Track2" type="Node3D" parent="."]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
@@ -55,6 +60,7 @@ path_joined = true
 smooth_faces = true
 
 [node name="StartArea" type="Area3D" parent="Track2"]
+
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.727501, -20.8853)
 script = ExtResource("1_7lnir")
 
@@ -66,3 +72,4 @@ debug_color = Color(0.982746, 0, 0.359392, 0.42)
 [node name="PlayerSpawn" type="Marker3D" parent="Track2/StartArea"]
 unique_name_in_owner = true
 transform = Transform3D(-0.212792, 0, -0.977098, 0, 1, 0, 0.977098, 0, -0.212792, 0.0460178, -0.377568, 0.00803566)
+
