@@ -19,10 +19,10 @@ on:
           - Both
           
 env:
-  GODOT_VERSION: 4.4.1
+  GODOT_VERSION: 4.4
   GODOT_PROJECT_LOCATION: project.godot
-  EXPORT_FOLDER_LINUX: ./bin/linux
-  EXPORT_FOLDER_WINDOWS: ./bin/windows
+  EXPORT_FOLDER_LINUX: bin/linux
+  EXPORT_FOLDER_WINDOWS: bin/windows
   APPLICATION_NAME: Menu_Template
   
 jobs:
@@ -71,8 +71,8 @@ jobs:
       - name: Uploading GDExtension Linux artifact debug
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.APPLICATION_NAME }}_linux_debug_$${{ env.DATE }}.tar
-          path: ${{ env.APPLICATION_NAME }}_linux_debug_$${{ env.DATE }}.tar
+          name: ${{ env.APPLICATION_NAME }}_linux_debug_${{ env.DATE }}.tar
+          path: ${{ env.APPLICATION_NAME }}_linux_debug_${{ env.DATE }}.tar
 
       - name: Building debug Windows
         run: |
@@ -82,7 +82,7 @@ jobs:
       - name: Uploading GDExtension Windows artifact debug
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.APPLICATION_NAME }}_windows_debug_$${{ env.DATE }}
+          name: ${{ env.APPLICATION_NAME }}_windows_debug_${{ env.DATE }}
           path: ${{ env.EXPORT_FOLDER_WINDOWS }}/
 
 
