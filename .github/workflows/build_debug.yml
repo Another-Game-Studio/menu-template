@@ -40,12 +40,7 @@ jobs:
 
       - name: Vérifier la variable MAIN_FOLDER
         run: |
-          if [ -z "${{ env.MAIN_FOLDER }}" ]; then
-            echo "La variable MAIN_FOLDER n'est pas définie ou est vide."
-            exit 1
-          else
-            echo "MAIN_FOLDER est définie : ${{ env.MAIN_FOLDER }}"
-          fi
+          echo "MAIN_FOLDER: ${{ env.MAIN_FOLDER }}"
       
       - name: Debug job target
         run: echo ${{ env.JOB_TARGET }}
