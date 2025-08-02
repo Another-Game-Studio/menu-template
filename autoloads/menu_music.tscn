@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://dubyuldkiw5ai"]
+[gd_scene load_steps=3 format=3 uid="uid://dubyuldkiw5ai"]
 
 [ext_resource type="AudioStream" uid="uid://cynei4nxf4x4j" path="res://assets/sounds/musics/Three Red Hearts - Candy.ogg" id="1_fyry3"]
+[ext_resource type="Script" uid="uid://b7idt8jnlqcru" path="res://autoloads/menu_music.gd" id="2_mkrn0"]
 
 [node name="MenuMusic" type="AudioStreamPlayer"]
 stream = ExtResource("1_fyry3")
 autoplay = true
 bus = &"Music"
+script = ExtResource("2_mkrn0")
