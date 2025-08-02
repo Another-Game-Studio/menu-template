@@ -23,7 +23,7 @@ env:
   GODOT_PROJECT_LOCATION: ./project.godot
   EXPORT_FOLDER_LINUX: bin/linux
   EXPORT_FOLDER_WINDOWS: bin/windows
-  APPLICATION_NAME: Menu_Template
+  APPLICATION_NAME: menu_template
   
 jobs:
   build:
@@ -38,6 +38,15 @@ jobs:
           echo "MAIN_FOLDER=$(pwd)" >> $GITHUB_ENV
           echo "JOB_TARGET='Both'" >> $GITHUB_ENV
 
+      - name: Vérifier la variable MAIN_FOLDER
+        run: |
+          if [ -z "${{ env.MAIN_FOLDER }}" ]; then
+            echo "La variable MAIN_FOLDER n'est pas définie ou est vide."
+            exit 1
+          else
+            echo "MAIN_FOLDER est définie : ${{ env.MAIN_FOLDER }}"
+          fi
+      
       - name: Debug job target
         run: echo ${{ env.JOB_TARGET }}
         
