@@ -23,3 +23,7 @@ func _on_itch_button_down() -> void:
 
 func _on_github_button_down() -> void:
 	OS.shell_open(developer_info.github_url)
+
+func _exit_tree() -> void:
+	itch_button.button_down.disconnect(_on_itch_button_down)
+	github_button.button_down.disconnect(_on_github_button_down)

@@ -25,3 +25,9 @@ func _on_credits_button_down() -> void:
 
 func _on_exit_button_down() -> void:
 	get_tree().quit()	
+	
+func _exit_tree() -> void:
+	new_game_button.button_down.disconnect(_on_new_game_button_down)	
+	options_button.button_down.disconnect(_on_options_button_down)
+	credits_button.button_down.disconnect(_on_credits_button_down)
+	exit_button.button_down.disconnect(_on_exit_button_down)
