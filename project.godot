@@ -16,10 +16,6 @@ run/main_scene="uid://dfkbo2qg82rgl"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
-[autoload]
-
-MenuMusic="*res://autoloads/menu_music.tscn"
-
 [display]
 
 window/size/viewport_width=1920
